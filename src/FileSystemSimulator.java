@@ -110,7 +110,15 @@ public class FileSystemSimulator {
                     fs.printJournal();
                     break;
                 case "help":
-                    System.out.println("Comandos: mkdir [nome], touch [nome], rm [nome], rmdir [nome], cd [nome], ls, journal, exit");
+                    System.out.println("\n--- Comandos Disponíveis ---" +
+                            "\n mkdir [nome]   -> Cria um novo diretório" +
+                            "\n touch [nome]   -> Cria um novo arquivo vazio" +
+                            "\n rm [nome]      -> Remove um arquivo" +
+                            "\n rmdir [nome]   -> Remove um diretório" +
+                            "\n cd [nome]      -> Entra num diretório (use '..' para voltar)" +
+                            "\n ls             -> Lista o conteúdo do diretório atual" +
+                            "\n journal        -> Exibe o histórico de operações (Log)" +
+                            "\n exit           -> Encerra o simulador\n");
                     break;
                 case "exit":
                     System.out.println("Encerrando simulador.");
