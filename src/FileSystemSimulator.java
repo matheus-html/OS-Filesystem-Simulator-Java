@@ -85,46 +85,47 @@ public class FileSystemSimulator {
             switch (command) {
                 case "mkdir":
                     if (parts.length > 1) fs.createDirectory(parts[1]);
-                    else System.out.println("Erro: Forneça o nome do diretório.");
+                    else System.out.println("A sintaxe do comando está incorreta.");
                     break;
                 case "touch":
                     if (parts.length > 1) fs.createFile(parts[1], "Vazio");
-                    else System.out.println("Erro: Forneça o nome do arquivo.");
+                    else System.out.println("A sintaxe do comando está incorreta.");
                     break;
                 case "rmdir":
                     if (parts.length > 1) fs.deleteDirectory(parts[1]);
-                    else System.out.println("Erro: Forneça o nome do diretório.");
+                    else System.out.println("A sintaxe do comando está incorreta.");
                     break;
-                case "rm":
+                case "del": // Antigo rm
                     if (parts.length > 1) fs.deleteFile(parts[1]);
-                    else System.out.println("Erro: Forneça o nome do arquivo.");
+                    else System.out.println("A sintaxe do comando está incorreta.");
                     break;
                 case "cd":
                     if (parts.length > 1) fs.changeDirectory(parts[1]);
-                    else System.out.println("Erro: Forneça o caminho.");
+                    else System.out.println("A sintaxe do comando está incorreta.");
                     break;
-                case "ls":
+                case "dir":
                     fs.listCurrentDirectory();
                     break;
                 case "journal":
                     fs.printJournal();
                     break;
                 case "help":
-                    System.out.println("\n--- Comandos Disponíveis ---" +
-                            "\n mkdir [nome]   -> Cria um novo diretório" +
-                            "\n touch [nome]   -> Cria um novo arquivo vazio" +
-                            "\n rm [nome]      -> Remove um arquivo" +
-                            "\n rmdir [nome]   -> Remove um diretório" +
-                            "\n cd [nome]      -> Entra num diretório (use '..' para voltar)" +
-                            "\n ls             -> Lista o conteúdo do diretório atual" +
-                            "\n journal        -> Exibe o histórico de operações (Log)" +
-                            "\n exit           -> Encerra o simulador\n");
+                    System.out.println("\n" +
+                            "CD             Exibe o nome do diretório atual ou faz alterações nele.\n" +
+                            "DEL            Exclui um ou mais arquivos.\n" +
+                            "DIR            Exibe uma lista de arquivos e subdiretórios em um diretório.\n" +
+                            "EXIT           Sai do programa interpretador de comandos.\n" +
+                            "JOURNAL        Exibe o histórico de logs do sistema de arquivos.\n" +
+                            "MKDIR          Cria um diretório.\n" +
+                            "RMDIR          Remove um diretório.\n" +
+                            "TOUCH          Cria um arquivo de texto novo (Simulado).\n");
                     break;
                 case "exit":
                     System.out.println("Encerrando simulador.");
                     break;
                 default:
-                    System.out.println("Comando desconhecido.");
+                    System.out.println("'" + command + "' não é reconhecido como um comando interno\n" +
+                            "ou externo, um programa operável ou um arquivo em lotes.");
             }
         }
         scanner.close();
