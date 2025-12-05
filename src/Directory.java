@@ -1,7 +1,9 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Directory {
+public class Directory implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name;
     private List<File> files;
     private List<Directory> directories;
