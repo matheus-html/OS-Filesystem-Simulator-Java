@@ -1,8 +1,8 @@
 # Simulador de Sistema de Arquivos com Journaling
 
-**Disciplina:** Proj. de Sistema Operacional |
-**Linguagem:** Java |
-**Alunos:** Ana Beatriz e Matheus Holanda
+**Disciplina:** Proj. de Sistema Operacional 
+
+**Alunos:** Ana Beatriz de Sousa Colaço e Matheus Holanda de Sá
 
 ## Metodologia
 O simulador foi desenvolvido em linguagem de programação Java. Ele funciona em "Modo Avançado" (Shell), onde o sistema roda em um loop contínuo aguardando comandos. O programa recebe as chamadas de métodos com os devidos parâmetros, executa a funcionalidade correspondente a um comando de SO (como `mkdir` ou `copy`) e exibe o resultado na tela, mantendo a persistência dos dados em disco.
