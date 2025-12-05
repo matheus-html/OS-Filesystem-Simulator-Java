@@ -23,30 +23,61 @@ public class Directory {
     }
 
     public void addFile(File file) {
-        this.files.add(file);
+        if (getFile(file.getFilename()) == null) {
+            this.files.add(file);
+        } else {
+            System.out.println("Um arquivo já existe com esse nome.");
+        }
     }
 
     public void removeFile(String filename) {
-        this.files.remove(new File(filename));
+        File removeFile = getFile(filename);
+        if (removeFile != null) {
+            files.remove(removeFile);
+        }
     }
 
-    public File  getFile(String filename) {
+    public File getFile(String filename) {
+        for (File file : files) {
+            if (file.getFilename().equals(filename)) {
+                return file;
+            }
+        }
         return null;
     }
 
     public void addDirectory(Directory directory) {
-        this.directories.add(directory);
+        if (getDirectory(directory.getName()) == null) {
+            this.directories.add(directory);
+        } else {
+            System.out.println("Um diretório já existe com esse nome.");
+        }
     }
 
-    public void removeDirectory(Directory directory) {
-        this.directories.remove(directory);
+    public void removeDirectory(String directoryName) {
+        Directory dirToRemove = getDirectory(directoryName);
+        if (dirToRemove != null) {
+            directories.remove(dirToRemove);
+        }
     }
 
-    public Directory getDirectory(String directory) {
+    public Directory getDirectory(String directoryName) {
+        for (Directory directory : directories) {
+            if (directory.getName().equals(directoryName)) {
+                return directory;
+            }
+        }
         return null;
     }
 
     public List<String> listContents() {
-        return null;
+        List<String> contents = new ArrayList<>();
+        for (Directory dir : directories) {
+            contents.add("[DIR] " + dir.getName());
+        }
+        for (File file : files) {
+            contents.add("[FILE] " + file.getFilename());
+        }
+        return contents;
     }
 }
