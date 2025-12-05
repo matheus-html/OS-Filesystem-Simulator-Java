@@ -1,9 +1,11 @@
+import java.util.Scanner;
+
 public class FileSystemSimulator {
     private Directory root;
     private Directory currentDirectory;
     private Journal journal;
 
-    public FileSystemSimulator(Directory root, Journal journal) {
+    public FileSystemSimulator() {
         this.root = new Directory("/", null);
         this.currentDirectory = this.root;
         this.journal = new Journal();
@@ -67,4 +69,56 @@ public class FileSystemSimulator {
         return currentDirectory.getName();
     }
 
+    public static void main(String[] args) {
+        FileSystemSimulator fs = new FileSystemSimulator();
+        Scanner scanner = new Scanner(System.in);
+        String command = "";
+
+        System.out.println("Simulador de Sistema de Arquivos Iniciado. Digite 'help' para comandos.");
+
+        while (!command.equals("exit")) {
+            System.out.print(fs.getCurrentPath() + "> ");
+            String input = scanner.nextLine();
+            String[] parts = input.split(" ");
+            command = parts[0];
+
+            switch (command) {
+                case "mkdir":
+                    if (parts.length > 1) fs.createDirectory(parts[1]);
+                    else System.out.println("Erro: Forneça o nome do diretório.");
+                    break;
+                case "touch":
+                    if (parts.length > 1) fs.createFile(parts[1], "Vazio");
+                    else System.out.println("Erro: Forneça o nome do arquivo.");
+                    break;
+                case "rmdir":
+                    if (parts.length > 1) fs.deleteDirectory(parts[1]);
+                    else System.out.println("Erro: Forneça o nome do diretório.");
+                    break;
+                case "rm":
+                    if (parts.length > 1) fs.deleteFile(parts[1]);
+                    else System.out.println("Erro: Forneça o nome do arquivo.");
+                    break;
+                case "cd":
+                    if (parts.length > 1) fs.changeDirectory(parts[1]);
+                    else System.out.println("Erro: Forneça o caminho.");
+                    break;
+                case "ls":
+                    fs.listCurrentDirectory();
+                    break;
+                case "journal":
+                    fs.printJournal();
+                    break;
+                case "help":
+                    System.out.println("Comandos: mkdir [nome], touch [nome], rm [nome], rmdir [nome], cd [nome], ls, journal, exit");
+                    break;
+                case "exit":
+                    System.out.println("Encerrando simulador.");
+                    break;
+                default:
+                    System.out.println("Comando desconhecido.");
+            }
+        }
+        scanner.close();
+    }
 }
